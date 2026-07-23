@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1783976030" />
+    <testcase name="test_comparator" classname="test_comparator" file="/Users/jacobhe/Downloads/Projects/PERL/plu/test/test_comparator.py" lineno="10" time="20.921576261520386" sim_time_ns="5000010.0" ratio_time="238988.2070786499" />
+  </testsuite>
+</testsuites>
