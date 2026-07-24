@@ -1,7 +1,7 @@
 module lut (
     input wire signed [15:0] i_i, b,
     input wire mac_done,
-    input wire next_pb, clk, rst_b,
+    input wire next_color, clk, rst_b,
     output reg [11:0] p_1,
     output reg lut_done
 );
@@ -10,6 +10,7 @@ module lut (
     wire signed [8:0] clamped;
     wire [8:0] addr;
     reg [11:0] lut [0:511];
+    
     initial begin
         $readmemh("lut.hex", lut);
     end
@@ -24,7 +25,7 @@ module lut (
             p_1 <= 0;
             lut_done <= 0;
         end
-        else if (next_pb) begin
+        else if (next_color) begin
             p_1 <= 0;
             lut_done <= 0;
         end

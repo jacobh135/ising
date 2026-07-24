@@ -1,10 +1,10 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import NextTimeStep, RisingEdge, ReadOnly
+from cocotb.triggers import FallingEdge
 
 async def reset_dut(dut):
     dut.rst_b.value = 0
-    await RisingEdge(dut.clk)
+    await FallingEdge(dut.clk)
     dut.rst_b.value = 1
 
 @cocotb.test()

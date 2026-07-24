@@ -1,10 +1,10 @@
 import cocotb, random
 from cocotb.clock import Clock
-from cocotb.triggers import NextTimeStep, RisingEdge, ReadOnly
+from cocotb.triggers import FallingEdge
 
 async def reset_dut(dut):
     dut.rst_b.value = 0
-    await RisingEdge(dut.clk)
+    await FallingEdge(dut.clk)
     dut.rst_b.value = 1
 
 @cocotb.test()
@@ -18,16 +18,15 @@ async def test_comparator(dut):
     dut.lut_done.value = 1
     dut.p_1.value = 1024
     dut.rnd.value = random.randint(0, 4095)
-    await RisingEdge(dut.clk)
+
+    await FallingEdge(dut.clk)
 
     for i in range(500000):
-        await ReadOnly()
         total += 1
-        if dut.spin.value == 1:
+        if dut.s_i.value == 1:
             count += 1
 
-        await NextTimeStep()
         dut.rnd.value = random.randint(0, 4095)
-        await RisingEdge(dut.clk)
+        await FallingEdge(dut.clk)
 
-    assert abs(count/total - 0.25) < 0.01, f"Expected spin ratio=0.25 ± 0.01, got {count/total}"
+    assert abs(count/total - 0.25) < 0.01, f"Expected s_i ratio=0.25 ± 0.01, got {count/total}"
