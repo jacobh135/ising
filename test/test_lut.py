@@ -12,7 +12,7 @@ async def test_random(dut):
     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
     await reset_dut(dut)
 
-    dut.i_i.value = 64
+    dut.sum.value = 64
     dut.b.value = 6144
     dut.mac_done.value = 1
     dut.next_color.value = 0
@@ -26,7 +26,7 @@ async def test_zero(dut):
     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
     await reset_dut(dut)
 
-    dut.i_i.value = -256
+    dut.sum.value = -256
     dut.b.value = 8192
     dut.mac_done.value = 1
     dut.next_color.value = 0

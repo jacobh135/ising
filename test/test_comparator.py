@@ -23,10 +23,10 @@ async def test_comparator(dut):
 
     for i in range(500000):
         total += 1
-        if dut.s_i.value == 1:
+        if dut.spin_i.value == 1:
             count += 1
 
         dut.rnd.value = random.randint(0, 4095)
         await FallingEdge(dut.clk)
 
-    assert abs(count/total - 0.25) < 0.01, f"Expected s_i ratio=0.25 ± 0.01, got {count/total}"
+    assert abs(count/total - 0.25) < 0.01, f"Expected spin_i ratio=0.25 ± 0.01, got {count/total}"

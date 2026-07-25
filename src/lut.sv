@@ -1,7 +1,7 @@
 import ising_pkg::*;
 
 module lut (
-    input wire signed [SUM_W-1:0] i_i,
+    input wire signed [SUM_W-1:0] sum,
     input wire signed [BETA_W-1:0] b,
     input wire mac_done,
     input wire next_color, clk, rst_b,
@@ -18,7 +18,7 @@ module lut (
         $readmemh("lut.hex", lut);
     end
 
-    assign product = i_i * b;
+    assign product = sum * b;
     assign scaled = (product + LUT_ROUND) >>> LUT_SHIFT;
     assign tanh_input = (scaled > LUT_CLAMP_HIGH) ? LUT_CLAMP_HIGH : ((scaled < LUT_CLAMP_LOW) ? LUT_CLAMP_LOW : $signed(scaled[8:0]));
     assign addr = {~tanh_input[LUT_BIAS], tanh_input[LUT_BIAS-1:0]};
@@ -33,7 +33,7 @@ module lut (
             lut_done <= 0;
         end
         else begin
-            if (mac_done) begin
+            if (mac_done && ~lut_done) begin
                 p_1 <= lut[addr];
                 lut_done <= 1;
             end

@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1784932289" />
-    <testcase name="test_file" classname="test_plu" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_plu.py" lineno="33" time="72.94730615615845" sim_time_ns="14000015.0" ratio_time="191919.56136159625" />
+    <property name="random_seed" value="1785002975" />
+    <testcase name="test_file" classname="test_plu" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_plu.py" lineno="33" time="80.27568101882935" sim_time_ns="14000005.0" ratio_time="174399.0810456803" />
   </testsuite>
 </testsuites>

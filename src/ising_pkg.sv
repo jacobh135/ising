@@ -3,8 +3,8 @@
         // ISING
         localparam int PBIT_NUM_MAX = 128;
 
-        localparam int WEIGHT_W = 8;
-        localparam int WEIGHT_FRAC = 7;
+        localparam int TERM_WEIGHT_W = 8;
+        localparam int TERM_WEIGHT_FRAC = 7;
 
         localparam int SUM_W = 16;
         localparam int SUM_FRAC = 7;
@@ -38,14 +38,17 @@
         localparam int LUT_DEPTH = 1 << LUT_INPUT_W;
 
         // FEEDER
-        localparam int COLORS_PER_ROUND = 16; 
+        localparam int PBITS_PER_PLU = 16; 
         localparam int TERMS_PER_PBIT_MAX = 32;
+        localparam int TERM_TOTAL_MAX = PBITS_PER_PLU*TERMS_PER_PBIT_MAX;
 
-        localparam int INDEX_W = $clog2(COLORS_PER_ROUND);
+        localparam int INDEX_W = $clog2(PBITS_PER_PLU);
 
-        localparam int TERM_TOTAL_MAX = COLORS_PER_ROUND*TERMS_PER_PBIT_MAX;
+        localparam int PBIT_INDEX_W = $clog2(PBIT_NUM_MAX);
+        localparam int PBIT_PROFILE_ADDRESS_W = $clog2(TERM_TOTAL_MAX);
+        localparam int PBIT_TERM_COUNT_W = $clog2(TERMS_PER_PBIT_MAX + 1);
+        localparam int INDEX_STRING_W = 1 + PBIT_INDEX_W + PBIT_PROFILE_ADDRESS_W + PBIT_TERM_COUNT_W;
 
-        localparam int INDEX_STRING_W = 1 + $clog2(PBIT_NUM_MAX) + $clog2(TERM_TOTAL_MAX) + $clog2(TERMS_PER_PBIT_MAX + 1);
-        localparam int TERM_STRING_W = 2 + WEIGHT_W + 2*($clog2(PBIT_NUM_MAX));
+        localparam int TERM_STRING_W = 2 + TERM_WEIGHT_W + 2*PBIT_INDEX_W;
 
     endpackage

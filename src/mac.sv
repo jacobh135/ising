@@ -1,10 +1,10 @@
 import ising_pkg::*;
 
 module mac (
-    input wire s_j, s_k, term_valid, fetch_done, next_color, clk, rst_b,
+    input wire term_spin_j, term_spin_k, term_valid, fetch_done, next_color, clk, rst_b,
     input wire [1:0] term_type,
-    input wire signed [7:0] weight,
-    output reg signed [15:0] i_i,
+    input wire signed [TERM_WEIGHT_W-1:0] term_weight,
+    output reg signed [SUM_W-1:0] sum,
     output reg mac_done
 );
     localparam H = 2'b00;
@@ -13,28 +13,28 @@ module mac (
 
     always @(posedge clk, negedge rst_b) begin
         if (~rst_b) begin
-            i_i <= 0;
+            sum <= 0;
             mac_done <= 0;
         end
         else if (next_color) begin
-            i_i <= 0;
+            sum <= 0;
             mac_done <= 0;
         end
         else begin
             if (~mac_done && term_valid) begin
                 case (term_type)
-                    H: i_i <= i_i + weight;
+                    H: sum <= sum + term_weight;
                     J:
-                        if (s_j)
-                            i_i <= i_i + weight;
+                        if (term_spin_j)
+                            sum <= sum + term_weight;
                         else
-                            i_i <= i_i - weight;
+                            sum <= sum - term_weight;
                     K:
-                        if (s_j ~^ s_k)
-                            i_i <= i_i + weight;
+                        if (term_spin_j ~^ term_spin_k)
+                            sum <= sum + term_weight;
                         else
-                            i_i <= i_i - weight;
-                    default: i_i <= i_i;
+                            sum <= sum - term_weight;
+                    default: sum <= sum;
                 endcase
             end
             if (fetch_done) begin

@@ -1,5 +1,6 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
+WAVES = 1
 
 VERILOG_SOURCES = $(PWD)/../src/ising_pkg.sv
 VERILOG_SOURCES += $(PWD)/../src/plu.sv
