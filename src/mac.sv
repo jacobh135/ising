@@ -1,3 +1,5 @@
+import ising_pkg::*;
+
 module mac (
     input wire s_j, s_k, term_valid, fetch_done, next_color, clk, rst_b,
     input wire [1:0] term_type,

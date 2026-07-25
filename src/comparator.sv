@@ -1,6 +1,8 @@
+import ising_pkg::*;
+
 module comparator (
     input wire next_color, lut_done, clk, rst_b,
-    input wire [11:0] p_1, rnd,
+    input wire [PROBABILITY_W-1:0] p_1, rnd,
     output reg s_i, comparator_done
 );
     always @(posedge clk, negedge rst_b) begin
