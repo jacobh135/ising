@@ -7,10 +7,9 @@ async def reset_dut(dut):
     await FallingEdge(dut.clk)
     dut.rst_b.value = 1
 
-async def feed_term(dut, term_spin_j=0, term_spin_k=0, term_valid=0, fetch_done=0, next_color=0, term_type=0, term_weight=0):
+async def feed_term(dut, term_spin_j=0, term_spin_k=0, fetch_done=0, next_color=0, term_type=0, term_weight=0):
     dut.term_spin_j.value = term_spin_j
     dut.term_spin_k.value = term_spin_k
-    dut.term_valid.value = term_valid
     dut.fetch_done.value = fetch_done
     dut.next_color.value = next_color
     dut.term_type.value = term_type
@@ -19,16 +18,14 @@ async def feed_term(dut, term_spin_j=0, term_spin_k=0, term_valid=0, fetch_done=
     await FallingEdge(dut.clk)
 
 async def feed_profile_1(dut):
-    await feed_term(dut, term_spin_k=1, term_valid=1, term_type=2, term_weight=8)
-    await feed_term(dut, term_spin_j=1, term_valid=0, term_type=1, term_weight=10)
-    await feed_term(dut, term_spin_j=1, term_valid=1, term_type=1, term_weight=5)
-    await feed_term(dut, term_valid=1, fetch_done=1, term_type=0, term_weight=9)
+    await feed_term(dut, term_spin_k=1, term_type=2, term_weight=8)
+    await feed_term(dut, term_spin_j=1, term_type=1, term_weight=5)
+    await feed_term(dut, fetch_done=1, term_type=0, term_weight=9)
 
 async def feed_profile_2(dut):
-    await feed_term(dut, term_spin_k=1, term_valid=1, term_type=2, term_weight=4)
-    await feed_term(dut, term_spin_j=1, term_valid=0, term_type=1, term_weight=9)
-    await feed_term(dut, term_spin_j=1, term_valid=1, term_type=1, term_weight=8)
-    await feed_term(dut, term_valid=1, fetch_done=1, term_type=0, term_weight=3)
+    await feed_term(dut, term_spin_k=1, term_type=2, term_weight=4)
+    await feed_term(dut, term_spin_j=1, term_type=1, term_weight=8)
+    await feed_term(dut, fetch_done=1, term_type=0, term_weight=3)
 
 @cocotb.test()
 async def test_file(dut):

@@ -1,7 +1,7 @@
 import ising_pkg::*;
 
 module mac (
-    input wire term_spin_j, term_spin_k, term_valid, fetch_done, next_color, clk, rst_b,
+    input wire term_spin_j, term_spin_k, fetch_done, next_color, clk, rst_b,
     input wire [1:0] term_type,
     input wire signed [TERM_WEIGHT_W-1:0] term_weight,
     output reg signed [SUM_W-1:0] sum,
@@ -21,7 +21,7 @@ module mac (
             mac_done <= 0;
         end
         else begin
-            if (~mac_done && term_valid) begin
+            if (~mac_done) begin
                 case (term_type)
                     H: sum <= sum + term_weight;
                     J:

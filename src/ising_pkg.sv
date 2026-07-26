@@ -2,6 +2,7 @@
 
         // ISING
         localparam int PBIT_NUM_MAX = 128;
+        localparam int PBIT_NUM = 100;
 
         localparam int TERM_WEIGHT_W = 8;
         localparam int TERM_WEIGHT_FRAC = 7;
@@ -38,11 +39,12 @@
         localparam int LUT_DEPTH = 1 << LUT_INPUT_W;
 
         // FEEDER
-        localparam int PBITS_PER_PLU = 16; 
+        localparam int PBITS_PER_PLU = 5; 
+        localparam int PBITS_PER_PLU_MAX = 16; 
         localparam int TERMS_PER_PBIT_MAX = 32;
-        localparam int TERM_TOTAL_MAX = PBITS_PER_PLU*TERMS_PER_PBIT_MAX;
+        localparam int TERM_TOTAL_MAX = PBITS_PER_PLU_MAX*TERMS_PER_PBIT_MAX;
 
-        localparam int INDEX_W = $clog2(PBITS_PER_PLU);
+        localparam int INDEX_W = $clog2(PBITS_PER_PLU_MAX);
 
         localparam int PBIT_INDEX_W = $clog2(PBIT_NUM_MAX);
         localparam int PBIT_PROFILE_ADDRESS_W = $clog2(TERM_TOTAL_MAX);
