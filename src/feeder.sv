@@ -88,15 +88,15 @@ module feeder (
         end
         else begin
             if (~fetch_done) begin
-                if (term_current < pbit_term_count-1) begin
+                if (term_current < pbit_term_count-2) begin
                     term_string <= terms[pbit_profile_address + term_current + 1];
                     term_current <= term_current + 1;
 
                     fetch_done <= 0;
                 end
                 else begin
-                    term_string <= term_string;
-                    term_current <= term_current;
+                    term_string <= terms[pbit_profile_address + term_current + 1];
+                    term_current <= term_current + 1;
 
                     fetch_done <= 1;
                 end
