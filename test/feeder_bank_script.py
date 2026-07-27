@@ -38,6 +38,8 @@ def get_index(valid, i_index, profile_address, term_count):
     )
     return index
 
+# note that real pbits where h, j, and k are all 0 have a 1 zero term profile
+# thus, it must be asserted that if valid=1, then term_count>=1
 assigned_pbits = [1, -1, 5, -1, -1]
 
 # index starts at 1
@@ -117,6 +119,12 @@ for key, value in H_weights.items():
             term = get_term(0, value, 0, 0)
 
             profiles[key-1].append(term)
+
+for i in assigned_pbits:
+    if ((i != -1) and (not (profiles[i-1]))):
+        term = get_term(0, 0, 0, 0)
+
+        profiles[i-1].append(term)
 
 terms_hex_length = ceil(TERM_STRING_W / 4)
 
