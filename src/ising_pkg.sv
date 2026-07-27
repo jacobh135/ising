@@ -39,7 +39,7 @@
         localparam int LUT_DEPTH = 1 << LUT_INPUT_W;
 
         // FEEDER
-        localparam int PBITS_PER_PLU = 5; 
+        localparam int PBITS_PER_PLU = 6; 
         localparam int PBITS_PER_PLU_MAX = 16; 
         localparam int TERMS_PER_PBIT_MAX = 32;
         localparam int TERM_TOTAL_MAX = PBITS_PER_PLU_MAX*TERMS_PER_PBIT_MAX;

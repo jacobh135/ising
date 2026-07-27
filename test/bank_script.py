@@ -40,7 +40,7 @@ def get_index(valid, i_index, profile_address, term_count):
 
 # note that real pbits where h, j, and k are all 0 have a 1 zero term profile
 # thus, it must be asserted that if valid=1, then term_count>=1
-assigned_pbits = [1, -1, 5, -1, -1]
+assigned_pbits = [1, -1, 5, -1, -1, 6]
 
 # index starts at 1
 H_weights = {
@@ -48,7 +48,8 @@ H_weights = {
     (2): 2,
     (3): 1,
     (4): 0,
-    (5): -1
+    (5): -1,
+    (6): 0
 }
 
 J_weights = {
