@@ -84,7 +84,7 @@ module feeder (
             term_string <= terms[next_pbit_profile_address];
             term_current <= 0;
 
-            fetch_done <= (next_pbit_valid) ~& (next_pbit_term_count > 1);
+            fetch_done <= ~((next_pbit_valid) && (next_pbit_term_count > 1));
         end
         else begin
             if (~fetch_done) begin

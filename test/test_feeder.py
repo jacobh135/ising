@@ -24,7 +24,7 @@ async def reset_dut(dut):
     dut.rst_b.value = 1
 
 @cocotb.test()
-async def test_file(dut):
+async def test_feeder(dut):
     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
     await reset_dut(dut)
 

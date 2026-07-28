@@ -53,4 +53,7 @@
 
         localparam int TERM_STRING_W = 2 + TERM_WEIGHT_W + 2*PBIT_INDEX_W;
 
+        // UPDATER
+        localparam int PLU_COUNT = 10;
+
     endpackage

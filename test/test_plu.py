@@ -28,7 +28,7 @@ async def feed_profile_2(dut):
     await feed_term(dut, fetch_done=1, term_type=0, term_weight=3)
 
 @cocotb.test()
-async def test_file(dut):
+async def test_plu(dut):
     cocotb.start_soon(Clock(dut.clk, 10, unit="ns").start())
     await reset_dut(dut)
 
