@@ -36,9 +36,9 @@ module mac (
                             sum <= sum - term_weight;
                     default: sum <= sum;
                 endcase
-            end
-            if (fetch_done) begin
-                mac_done <= 1;
+                if (fetch_done) begin
+                    mac_done <= 1;
+                end
             end
         end
     end

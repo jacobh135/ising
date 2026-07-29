@@ -56,4 +56,14 @@
         // UPDATER
         localparam int PLU_COUNT = 10;
 
+        // CONTROLLER
+        localparam int COLOR_COUNT_W = $clog2(PBITS_PER_PLU + 1);
+
+        localparam int ROUND_COUNT = 32768;
+        localparam int ROUND_COUNT_W = $clog2(ROUND_COUNT + 1);
+
+        localparam int BETA_HOT = 615;
+        localparam int BETA_DURATION = 4;
+        localparam int BETA_SIGNAL = $clog2(BETA_DURATION);
+
     endpackage

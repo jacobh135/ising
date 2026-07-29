@@ -4,7 +4,7 @@ module plu #(parameter [31:0] SEED = 32'd0) (
     input wire term_spin_j, term_spin_k, fetch_done, next_color, clk, rst_b,
     input wire [1:0] term_type,
     input wire signed [TERM_WEIGHT_W-1:0] term_weight,
-    input wire signed [SUM_W-1:0] b,
+    input wire signed [BETA_W-1:0] b,
     output wire spin_i, plu_done
 );
     wire signed [SUM_W-1:0] sum;

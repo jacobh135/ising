@@ -10,9 +10,10 @@ VERILOG_SOURCES += $(PWD)/../src/lut.sv
 VERILOG_SOURCES += $(PWD)/../src/lfsr.sv
 VERILOG_SOURCES += $(PWD)/../src/comparator.sv
 VERILOG_SOURCES += $(PWD)/../src/updater.sv
+VERILOG_SOURCES += $(PWD)/../src/control.sv
 
-TOPLEVEL = updater
-MODULE = test_updater
+TOPLEVEL = control
+MODULE = test_control
 
 COMPILE_ARGS += -Pplu.SEED=32\'h12345678
 
