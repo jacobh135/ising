@@ -1,8 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1785272886" />
-    <testcase name="test_control" classname="test_control" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_control.py" lineno="12" time="0.004622936248779297" sim_time_ns="725.0" ratio_time="156826.73543063435">
-      <failure error_type="AssertionError" error_msg="assert LogicArray('0000000000000000', Range(15, 'downto', 0)) == 614&#10; +  where LogicArray('0000000000000000', Range(15, 'downto', 0)) = LogicArrayObject(control.b).value&#10; +    where LogicArrayObject(control.b) = HierarchyObject(control).b" />
-    </testcase>
+    <property name="random_seed" value="1785347290" />
+    <testcase name="test_control" classname="test_control" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_control.py" lineno="33" time="133.28140211105347" sim_time_ns="31493825.0" ratio_time="236295.72094206017" />
   </testsuite>
 </testsuites>
