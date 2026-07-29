@@ -23,8 +23,8 @@ def is_related(relationships, color_groups, pbit, color):
             return True
     return False
 
-pbits_total = 6
-pbits_per_color = 10
+pbits_total = 7 # PBIT_NUM
+pbits_per_color = 10 # PLU_COUNT
 
 # index starts at 1
 H_weights = {
@@ -33,7 +33,8 @@ H_weights = {
     (3): 1,
     (4): 0,
     (5): -1,
-    (6): 0
+    (6): 0,
+    (7): 0
 }
 
 J_weights = {
@@ -46,7 +47,8 @@ J_weights = {
     (2,5): -1,
     (3,4): 0,
     (3,5): 3,
-    (4,5): -2
+    (4,5): -2,
+    (5,7): 1
 }
 
 K_weights = {
@@ -161,7 +163,7 @@ for i in range(len(relationships)):
 
 print(color_groups)
 
-colors_per_group = len(color_groups)
+colors_per_group = len(color_groups) # PBITS_PER_PLU
 
 unit_groups = []
 for i in range(pbits_per_color):
@@ -177,4 +179,4 @@ for i in range(len(color_groups)):
 
 print(unit_groups)
 
-# ensure total terms in a group is less than term max
+# ensure total terms in a unit group is less than term max
