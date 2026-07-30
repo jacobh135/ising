@@ -17,8 +17,8 @@ def get_term(type, weight, j_index, k_index):
     )
     return term
 
-def is_related(relationships, color_groups, pbit, color):
-    for k in color_groups[color]:
+def is_related(relationships, color, pbit):
+    for k in color:
         if pbit in relationships[k-1]:
             return True
     return False
@@ -63,6 +63,8 @@ K_weights = {
     (2,4,5): 0,
     (3,4,5): -1
 }
+
+# create list of profiles
 
 profiles = []
 for i in range(pbits_total):
@@ -110,6 +112,8 @@ for i in range(len(profiles)):
 
         profiles[i].append(term)
 
+# create list of relationships
+
 relationships = []
 for i in range(pbits_total):
     related = []
@@ -144,24 +148,33 @@ for key, value in J_weights.items():
             if not key[j] in relationships[key[i]-1]:
                 relationships[key[i]-1].append(key[j])
 
+# create color groupings
+
 color_groups = []
 
-for i in range(len(relationships)):
-    # can sort by term number here
+pbits = []
+for i in range(pbits_total):
+    pbits.append(i+1)
 
+pbits_sorted = sorted(pbits, key=lambda i: len(profiles[i-1]), reverse=True)
+
+for i in pbits_sorted:
     added = False
     j = 0
     while (not added) and j < len(color_groups):
-        if (not is_related(relationships, color_groups, i+1, j) and (len(color_groups[j]) < pbits_per_color)):
-            color_groups[j].append(i+1)
+        if (not is_related(relationships, color_groups[j], i) and (len(color_groups[j]) < pbits_per_color)):
+            color_groups[j].append(i)
             added = 1
         else:
             j += 1
     if not added:
-        color = [i+1]
+        color = [i]
         color_groups.append(color)
 
-print(color_groups)
+# print(color_groups)
+
+
+# create unit groupings
 
 colors_per_group = len(color_groups) # PBITS_PER_PLU
 
@@ -177,6 +190,8 @@ for i in range(len(color_groups)):
     for j in range(len(color_groups[i])):
         unit_groups[j][i] = color_groups[i][j]
 
-print(unit_groups)
+# print(unit_groups)
 
 # ensure total terms in a unit group is less than term max
+# sort out variables and parameters -> matches and in-use vs capability
+# assertions for term totals in each unit group
