@@ -1,8 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1785363891" />
-    <testcase name="test_control" classname="test_control" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_control.py" lineno="33" time="9.971653938293457" sim_time_ns="1989830.0" ratio_time="199548.64181142434">
-      <failure error_type="SimFailure" error_msg="Simulator shut down prematurely" />
-    </testcase>
+    <property name="random_seed" value="1785519731" />
+    <testcase name="test_demux" classname="test_demux" file="/Users/jacobhe/Downloads/Projects/PERL/ising/test/test_demux.py" lineno="5" time="0.0007450580596923828" sim_time_ns="3.0" ratio_time="4026.53184" />
   </testsuite>
 </testsuites>

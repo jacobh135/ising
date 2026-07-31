@@ -11,9 +11,10 @@ VERILOG_SOURCES += $(PWD)/../src/lfsr.sv
 VERILOG_SOURCES += $(PWD)/../src/comparator.sv
 VERILOG_SOURCES += $(PWD)/../src/updater.sv
 VERILOG_SOURCES += $(PWD)/../src/control.sv
+VERILOG_SOURCES += $(PWD)/../src/demux.sv
 
-TOPLEVEL = control
-MODULE = test_control
+TOPLEVEL = demux
+MODULE = test_demux
 
 COMPILE_ARGS += -Pplu.SEED=32\'h12345678
 

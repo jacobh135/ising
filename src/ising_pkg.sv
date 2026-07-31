@@ -55,9 +55,10 @@ package ising_pkg;
 
     // UPDATER
     localparam int PLU_COUNT = 10;
+    localparam int PLU_INDEX_W = $clog2(PLU_COUNT);
 
     // CONTROLLER
-    localparam int COLOR_COUNT_W = $clog2(PBITS_PER_PLU + 1);
+    localparam int COLOR_COUNT_W = $clog2(PBITS_PER_PLU);
 
     localparam int ROUND_COUNT = 32768;
     localparam int ROUND_COUNT_W = $clog2(ROUND_COUNT + 1);
@@ -65,5 +66,9 @@ package ising_pkg;
     localparam int BETA_HOT = 615;
     localparam int BETA_DURATION = 4;
     localparam int BETA_SIGNAL = $clog2(BETA_DURATION);
+
+    // DEMUX
+    localparam int WADDRESS_W = (INDEX_W > PBIT_PROFILE_ADDRESS_W) ? INDEX_W : PBIT_PROFILE_ADDRESS_W;
+    localparam int WDATA_W = (INDEX_STRING_W > TERM_STRING_W) ? INDEX_STRING_W : TERM_STRING_W;
 
 endpackage
