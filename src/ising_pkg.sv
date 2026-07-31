@@ -2,7 +2,6 @@ package ising_pkg;
 
     // ISING
     localparam int PBIT_NUM_MAX = 128;
-    localparam int PBIT_NUM = 100;
 
     localparam int TERM_WEIGHT_W = 8;
     localparam int TERM_WEIGHT_FRAC = 7;
@@ -39,10 +38,9 @@ package ising_pkg;
     localparam int LUT_DEPTH = 1 << LUT_INPUT_W;
 
     // FEEDER
-    localparam int PBITS_PER_PLU = 5;
     localparam int PBITS_PER_PLU_MAX = 16; 
-    localparam int TERMS_PER_PBIT_MAX = 32;
-    localparam int TERM_TOTAL_MAX = PBITS_PER_PLU_MAX*TERMS_PER_PBIT_MAX;
+    localparam int TERMS_PER_PBIT_MAX = 128;
+    localparam int TERM_TOTAL_MAX = 640;
 
     localparam int INDEX_W = $clog2(PBITS_PER_PLU_MAX);
 
@@ -58,7 +56,7 @@ package ising_pkg;
     localparam int PLU_INDEX_W = $clog2(PLU_COUNT);
 
     // CONTROLLER
-    localparam int COLOR_COUNT_W = $clog2(PBITS_PER_PLU);
+    localparam int COLOR_COUNT_W = $clog2(PBITS_PER_PLU_MAX);
 
     localparam int ROUND_COUNT = 32768;
     localparam int ROUND_COUNT_W = $clog2(ROUND_COUNT + 1);

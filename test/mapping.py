@@ -1,4 +1,5 @@
 from ising_pkg import *
+from weights import *
 
 def twos_comp(value, width):
     return (value & ((1 << width) - 1))
@@ -23,46 +24,8 @@ def is_related(relationships, color, pbit):
             return True
     return False
 
-pbits_total = 7 # PBIT_NUM
+pbits_total = 100 # PBIT_NUM_MAX
 pbits_per_color = 10 # PLU_COUNT
-
-# index starts at 1
-H_weights = {
-    (1): 0,
-    (2): 2,
-    (3): 1,
-    (4): 0,
-    (5): -1,
-    (6): 0,
-    (7): 0
-}
-
-J_weights = {
-    (1,2): -3,
-    (1,3): -1,
-    (1,4): 2,
-    (1,5): 2,
-    (2,3): 0,
-    (2,4): 2,
-    (2,5): -1,
-    (3,4): 0,
-    (3,5): 3,
-    (4,5): -2,
-    (5,7): 1
-}
-
-K_weights = {
-    (1,2,3): -1,
-    (1,2,4): -1,
-    (1,2,5): -1,
-    (1,3,4): -2,
-    (1,3,5): 0,
-    (1,4,5): 1,
-    (2,3,4): -1,
-    (2,3,5): 0,
-    (2,4,5): 0,
-    (3,4,5): -1
-}
 
 # create list of profiles
 
@@ -111,6 +74,12 @@ for i in range(len(profiles)):
         term = get_term(0, 0, 0, 0)
 
         profiles[i].append(term)
+
+longest = 0
+for i in profiles:
+    if (len(i)) > longest:
+        longest = len(i)
+print(longest, " terms")
 
 # create list of relationships
 
@@ -171,8 +140,7 @@ for i in pbits_sorted:
         color = [i]
         color_groups.append(color)
 
-# print(color_groups)
-
+print(len(color_groups), " colors")
 
 # create unit groupings
 
@@ -189,8 +157,6 @@ for i in range(pbits_per_color):
 for i in range(len(color_groups)):
     for j in range(len(color_groups[i])):
         unit_groups[j][i] = color_groups[i][j]
-
-# print(unit_groups)
 
 # ensure total terms in a unit group is less than term max
 # sort out variables and parameters -> matches and in-use vs capability

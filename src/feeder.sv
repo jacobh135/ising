@@ -6,12 +6,14 @@ module feeder (
     input wire next_color,
     input wire [PBIT_NUM_MAX-1:0] spins,
 
+    input wire ising_done,
+
     input wire indices_wenable,
     input wire [INDEX_W-1:0] indices_waddress,
     input wire [INDEX_STRING_W-1:0] indices_wdata,
 
     input wire terms_wenable,
-    input wire [PBIT_PROFILE_ADDRESS_W01:0] terms_waddress,
+    input wire [PBIT_PROFILE_ADDRESS_W-1:0] terms_waddress,
     input wire [TERM_STRING_W-1:0] terms_wdata,
 
     output reg pbit_valid,
@@ -58,18 +60,20 @@ module feeder (
     end
 
     always @(posedge clk) begin
-        if (indices_wenable) begin
-            indices[indices_waddress] <= indices_wdata;
-        end
-        if (terms_wenable) begin
-            terms[terms_waddress] <= terms_wdata;
+        if (ising_done) begin
+            if (indices_wenable) begin
+                indices[indices_waddress] <= indices_wdata;
+            end
+            if (terms_wenable) begin
+                terms[terms_waddress] <= terms_wdata;
+            end
         end
     end
     
     always @(posedge clk, negedge rst_b) begin
         if (~rst_b) begin
             next_index_string <= indices[0];
-            pbit_current <= PBITS_PER_PLU-1;
+            pbit_current <= PBITS_PER_PLU_MAX-1;
 
             pbit_valid <= 0;
             pbit_i_index <= 0;
@@ -79,14 +83,14 @@ module feeder (
             term_string <= 0;
             term_current <= 0;
 
-            fetch_done <= 1;
+            fetch_done <= 0;
         end
         else if (next_color) begin
-            if (pbit_current < PBITS_PER_PLU-2) begin
+            if (pbit_current < PBITS_PER_PLU_MAX-2) begin
                 next_index_string <= indices[pbit_current + 2];
                 pbit_current <= pbit_current + 1;
             end
-            else if (pbit_current < PBITS_PER_PLU-1) begin
+            else if (pbit_current < PBITS_PER_PLU_MAX-1) begin
                 next_index_string <= indices[0];
                 pbit_current <= pbit_current + 1;
             end
