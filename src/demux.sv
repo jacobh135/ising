@@ -1,3 +1,5 @@
+import ising_pkg::*;
+
 module demux (
     input wire clk,
 

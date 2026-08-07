@@ -24,8 +24,9 @@ def is_related(relationships, color, pbit):
             return True
     return False
 
-pbits_total = 100 # PBIT_NUM_MAX
-pbits_per_color = 10 # PLU_COUNT
+pbits_total = PBIT_NUM_MAX
+pbits_per_color = PLU_COUNT
+colors_per_group = PBITS_PER_PLU_MAX
 
 # create list of profiles
 
@@ -118,7 +119,6 @@ for key, value in J_weights.items():
                 relationships[key[i]-1].append(key[j])
 
 # create color groupings
-
 color_groups = []
 
 pbits = []
@@ -142,9 +142,7 @@ for i in pbits_sorted:
 
 print(len(color_groups), " colors")
 
-# create unit groupings
-
-colors_per_group = len(color_groups) # PBITS_PER_PLU
+# create unit groupings 
 
 unit_groups = []
 for i in range(pbits_per_color):
@@ -157,7 +155,3 @@ for i in range(pbits_per_color):
 for i in range(len(color_groups)):
     for j in range(len(color_groups[i])):
         unit_groups[j][i] = color_groups[i][j]
-
-# ensure total terms in a unit group is less than term max
-# sort out variables and parameters -> matches and in-use vs capability
-# assertions for term totals in each unit group
